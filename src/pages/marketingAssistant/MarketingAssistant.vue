@@ -7,10 +7,10 @@
          <p>{{market.name}}</p>
        </li>
      </ul>
-     <grid :cols="3" :show-lr-borders="false">
-        <grid-item v-for="i in 6" :key="i">
+     <grid :cols="4" :show-lr-borders="true">
+        <grid-item v-for="i in 8" :key="i">
           <img src="" alt="">
-          <span class="grid-center">{{i}}</span>
+          <span class="grid-center"></span>
         </grid-item>
       </grid>
   </div>
@@ -28,6 +28,7 @@ export default {
   data(){
     return{
       topModelList:[],
+
     }
   },
   created() {

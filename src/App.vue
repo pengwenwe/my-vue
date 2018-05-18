@@ -17,7 +17,7 @@ export default {
 
 <style lang="stylus">
   body
-      background #f5f4f4
+    background #f5f4f4
   #app
     width 100%
     height 100%
@@ -25,12 +25,12 @@ export default {
     position absolute !important
     bottom 44px !important
   .vux-icon-dot
-      width 15px !important
-      height 4px !important
-      border-radius 0  !important
-      background-color #fff !important
+    width 15px !important
+    height 4px !important
+    border-radius 0  !important
+    background-color #fff !important
   .vux-icon-dot.active 
-      background-color #0042ac !important
+    background-color #0042ac !important
   .vux-header
     background-color #fff !important
   .vux-header-title
@@ -39,4 +39,9 @@ export default {
   .left-arrow:before
     border 1px solid #1c469d !important
     border-width .04rem 0 0 .04rem !important
+  .weui-grids 
+    background #fff
+    height 3.18rem
+  .weui-grids:before
+    border-top 0 !important
 </style>
