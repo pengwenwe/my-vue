@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { Grid, GridItem} from 'vux'
+import {Grid, GridItem} from 'vux'
 import http from '../../api/base.js'
 export default {
   name: 'MarketingAssistant',
@@ -28,7 +28,6 @@ export default {
   data(){
     return{
       topModelList:[],
-
     }
   },
   created() {
@@ -71,9 +70,9 @@ export default {
     text-align center
     margin-top 0.3rem 
     border-radius 0.1rem
-    margin-right 0.24rem
     box-shadow 0 0 10px #e5e4e4
-    justify-content center 
+    justify-content center
+    margin-left 0.2rem
   ul li:nth-child(2)
     background #efb053
   ul li:nth-child(3)
