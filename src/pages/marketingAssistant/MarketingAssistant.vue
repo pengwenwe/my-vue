@@ -12,7 +12,7 @@
           <img src="" alt="">
           <span class="grid-center"></span>
         </grid-item>
-      </grid>
+     </grid>
   </div>
 </template>
 
