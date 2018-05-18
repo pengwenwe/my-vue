@@ -1,0 +1,26 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
+body, button, input, select, textarea { font:12px/1.5 tahoma, arial, \5b8b\4f53; font-family: "苹方";}
+ h1, h2, h3, h4, h5, h6{ font-size:100%; list-style: none; } 
+address, cite, dfn, em, var,i { font-style:normal; } 
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
+ul,ol,li,dl,dt{ list-style:none; margin: 0;padding: 0; list-style: none;} 
+small{ font-size:12px; } 
+a { text-decoration:none; } 
+sup { vertical-align:text-top; } 
+sub{ vertical-align:text-bottom; } 
+legend { color:#000; } 
+fieldset, img {border: 0 none; } 
+button, input, select, textarea { font-size:100%; outline: none; vertical-align: top;}
+table { border-collapse:collapse; border-spacing:0; }
+a{
+	font-style: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+body{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #fff;
+}
