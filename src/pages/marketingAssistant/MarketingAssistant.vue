@@ -17,20 +17,20 @@
           <span class="king-name">更多</span>
         </grid-item>
       </grid>
-      <div class="find-con">
-          
-      </div>
+      <FindBussiness />
   </div>
 </template>
 
 <script>
 import {Grid, GridItem} from 'vux'
 import http from '../../api/base.js'
+import FindBussiness from './components/FindBussiness'
 export default {
   name: 'MarketingAssistant',
   components: {
     Grid,
-    GridItem
+    GridItem,
+    FindBussiness
   },
   data(){
     return{
@@ -108,10 +108,4 @@ export default {
     display block
   .weui-grid:nth-child(7)
     border-right 1px solid #e1e1e1
-  .find-con
-    height 4.9rem
-    background #fff
-    border-top 1px solid #d8d8d8
-    border-bottom 1px solid #d8d8d8
-    margin-top 0.2rem
 </style>
