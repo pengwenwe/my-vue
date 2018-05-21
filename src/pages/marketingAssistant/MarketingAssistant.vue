@@ -2,17 +2,24 @@
   <div class="marketingAssistant">
      <x-header :left-options="{backText: ''}">营销小助手</x-header>
      <ul>
-       <li v-for="market in topModelList" :key="market.id">
-         <img :src="market.iconUrl" alt="">
+       <li v-for="market in topModelDate" :key="market.id">
+         <img :src="'http://123.206.62.102/'+ market.iconUrl" alt="">
          <p>{{market.name}}</p>
        </li>
      </ul>
-     <grid :cols="4" :show-lr-borders="true">
-        <grid-item v-for="i in 8" :key="i">
-          <img src="" alt="">
-          <span class="grid-center"></span>
+      <grid :show-vertical-dividers="true":show-lr-borders="false">
+        <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
+          <img class="kind-img":src="'http://123.206.62.102/' + more.iconUrl" alt="">
+          <span class="king-name">{{more.name}}</span>
         </grid-item>
-     </grid>
+        <grid-item style="width:23.75%" :show-vertical-dividers="true">
+          <img class="kind-img" src="../../assets/list/more.png">
+          <span class="king-name">更多</span>
+        </grid-item>
+      </grid>
+      <div class="find-con">
+          
+      </div>
   </div>
 </template>
 
@@ -27,7 +34,8 @@ export default {
   },
   data(){
     return{
-      topModelList:[],
+      topModelDate:[],
+      andMoreModelDate:[],
     }
   },
   created() {
@@ -39,12 +47,13 @@ export default {
         "andMoreMode": "1,2,3",
         "andMoreNum": 7,
         "systemType": "1",
-        "userLoginName": "101",
-        "userid": 101
+        "userLoginName": "102",
+        "userid": 102
       })
       .then((res) => {
         if(res.data.code == "success") {
-          this.topModelList = res.data.data.indexPage.topModelList
+          this.topModelDate = res.data.data.indexPage.topModelList
+          this.andMoreModelDate =  res.data.data.indexPage.andMoreModelList
         }else if (res.data.code == 'error') {
 
         }
@@ -79,4 +88,30 @@ export default {
     background #93cd67
   ul li:nth-child(4)
     background #66bee6
+  ul li img
+    width 0.58rem
+    height 0.58rem
+    margin-top 0.28rem
+  ul li p
+    color #fff
+    font-size 14px
+  .weui-grid
+    text-align center
+    padding 10px 10px !important
+  .kind-img
+    width 0.6rem
+    height 0.6rem
+    display block
+    margin auto
+  .king-name
+    margin-top 0.2rem
+    display block
+  .weui-grid:nth-child(7)
+    border-right 1px solid #e1e1e1
+  .find-con
+    height 4.9rem
+    background #fff
+    border-top 1px solid #d8d8d8
+    border-bottom 1px solid #d8d8d8
+    margin-top 0.2rem
 </style>

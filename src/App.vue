@@ -42,6 +42,9 @@ export default {
   .weui-grids 
     background #fff
     height 3.18rem
+    padding-left 2.5%
   .weui-grids:before
     border-top 0 !important
+  .weui-grid:before:nth-child(4)
+    border-right 0!important
 </style>
