@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     reqHomeDate(){
-      http.post('http://123.206.62.102/indexPageApi/sysNotice',{
+      http.post('http://139.199.115.100:8082/indexPageApi/sysNotice',{
         "andMoreMode": "1,2,3",
         "andMoreNum": 7,
         "systemType": "1",

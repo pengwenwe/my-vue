@@ -1,23 +1,26 @@
 <template>
   <div class="marketingAssistant">
      <x-header :left-options="{backText: ''}">营销小助手</x-header>
-     <ul>
-       <li v-for="market in topModelDate" :key="market.id">
-         <img :src="'http://123.206.62.102/'+ market.iconUrl" alt="">
-         <p>{{market.name}}</p>
-       </li>
-     </ul>
-      <grid :show-vertical-dividers="true":show-lr-borders="false">
-        <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
-          <img class="kind-img":src="'http://123.206.62.102/' + more.iconUrl" alt="">
-          <span class="king-name">{{more.name}}</span>
-        </grid-item>
-        <grid-item style="width:23.75%" :show-vertical-dividers="true">
-          <img class="kind-img" src="../../assets/list/more.png">
-          <span class="king-name">更多</span>
-        </grid-item>
-      </grid>
-      <FindBussiness />
+     <div style="overflow: hidden">
+       <ul>
+         <li v-for="market in topModelDate" :key="market.id">
+           <img :src="'http://139.199.115.100:8082/'+ market.iconUrl" alt="">
+           <p>{{market.name}}</p>
+         </li>
+       </ul>
+        <grid :show-vertical-dividers="true":show-lr-borders="false">
+          <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
+            <img class="kind-img":src="'http://139.199.115.100:8082/' + more.iconUrl" alt="">
+            <span class="king-name">{{more.name}}</span>
+          </grid-item>
+          <grid-item style="width:23.75%" :show-vertical-dividers="true">
+            <img class="kind-img" src="../../assets/list/more.png">
+            <span class="king-name">更多</span>
+          </grid-item>
+        </grid>
+        <FindBussiness :findDate="findBussinessDate"/>
+        <SaleAchieve />
+      </div>
   </div>
 </template>
 
@@ -25,17 +28,20 @@
 import {Grid, GridItem} from 'vux'
 import http from '../../api/base.js'
 import FindBussiness from './components/FindBussiness'
+import SaleAchieve from './components/SaleAchieve'
 export default {
   name: 'MarketingAssistant',
   components: {
     Grid,
     GridItem,
-    FindBussiness
+    FindBussiness,
+    SaleAchieve
   },
   data(){
     return{
       topModelDate:[],
       andMoreModelDate:[],
+      findBussinessDate:[],
     }
   },
   created() {
@@ -43,17 +49,18 @@ export default {
   },
   methods: {
     reqMarketDate(){
-      http.post('http://123.206.62.102/indexPageApi/indexPage',{
+      http.post('http://139.199.115.100:8082/indexPageApi/indexPage',{
         "andMoreMode": "1,2,3",
         "andMoreNum": 7,
         "systemType": "1",
-        "userLoginName": "102",
-        "userid": 102
+        "userLoginName": "101",
+        "userid": 101
       })
       .then((res) => {
         if(res.data.code == "success") {
           this.topModelDate = res.data.data.indexPage.topModelList
           this.andMoreModelDate =  res.data.data.indexPage.andMoreModelList
+          this.findBussinessDate = res.data.data.indexPage.bizSearchModelList
         }else if (res.data.code == 'error') {
 
         }
@@ -97,7 +104,7 @@ export default {
     font-size 14px
   .weui-grid
     text-align center
-    padding 10px 10px !important
+    padding 10px 7px !important
   .kind-img
     width 0.6rem
     height 0.6rem
