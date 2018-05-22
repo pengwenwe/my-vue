@@ -1,7 +1,7 @@
 <template>
   <div class="marketingAssistant">
      <x-header :left-options="{backText: ''}">营销小助手</x-header>
-     <div style="overflow: hidden;">
+     <div style="overflow: scroll;position:absolute;top:0.9rem;bottom:0;">
        <ul>
          <li v-for="market in topModelDate" :key="market.id">
            <img :src="'http://139.199.115.100:8082/'+ market.iconUrl" alt="">
@@ -19,7 +19,8 @@
           </grid-item>
         </grid>
         <FindBussiness :findDate="findBussinessDate"/>
-        <SaleAchieve />
+        <SaleAchieve :saleDate ="saleAchieveDate"/>
+        <ConsumerCare />
       </div>
   </div>
 </template>
@@ -29,19 +30,22 @@ import {Grid, GridItem} from 'vux'
 import http from '../../api/base.js'
 import FindBussiness from './components/FindBussiness'
 import SaleAchieve from './components/SaleAchieve'
+import ConsumerCare from './components/ConsumerCare'
 export default {
   name: 'MarketingAssistant',
   components: {
     Grid,
     GridItem,
     FindBussiness,
-    SaleAchieve
+    SaleAchieve,
+    ConsumerCare
   },
   data(){
     return{
       topModelDate:[],
       andMoreModelDate:[],
       findBussinessDate:[],
+      saleAchieveDate:[]
     }
   },
   created() {
@@ -61,6 +65,7 @@ export default {
           this.topModelDate = res.data.data.indexPage.topModelList
           this.andMoreModelDate =  res.data.data.indexPage.andMoreModelList
           this.findBussinessDate = res.data.data.indexPage.bizSearchModelList
+          this.saleAchieveDate = res.data.data.indexPage.saleSearchModelList
         }else if (res.data.code == 'error') {
 
         }
