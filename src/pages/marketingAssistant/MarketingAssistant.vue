@@ -1,7 +1,7 @@
 <template>
   <div class="marketingAssistant">
      <x-header :left-options="{backText: ''}">营销小助手</x-header>
-     <div style="overflow: hidden">
+     <div style="overflow: hidden;">
        <ul>
          <li v-for="market in topModelDate" :key="market.id">
            <img :src="'http://139.199.115.100:8082/'+ market.iconUrl" alt="">

@@ -4,7 +4,13 @@
     <h2>销售达成查询</h2>
      <ul>
       <li>
-        <img src="" alt="">
+        <img src="../../../assets/list/fh.png" alt="">
+      </li>
+       <li>
+        <img src="../../../assets/list/fh.png" alt="">
+      </li>
+       <li>
+        <img src="../../../assets/list/fh.png" alt="">
       </li>
      </ul>
   </div>
@@ -44,5 +50,12 @@ export default {
     margin 0.37rem auto 0
     font-size 0.3rem
     font-weight 600
+  .saleAchieve ul li 
+    width 30%
+    height 1.77rem
+    flex-direction row
+  .saleAchieve ul li img
+    width 30%
+    height 1.77rem
   </style>
 
