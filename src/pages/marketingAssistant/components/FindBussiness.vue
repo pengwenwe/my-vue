@@ -33,12 +33,13 @@
       components: {
        
       },
+      props:['findDate'],
       data(){
         return{
-         
+          
         }
       },
-      props:['findDate']
+     
     }
 </script>
 

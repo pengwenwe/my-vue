@@ -1,28 +1,30 @@
 <template>
   <div class="marketingAssistant">
      <x-header :left-options="{backText: ''}">营销小助手</x-header>
-     <div style="overflow: scroll;position:absolute;top:0.9rem;bottom:0;">
-       <ul>
-         <li v-for="market in topModelDate" :key="market.id">
-           <img :src="'http://139.199.115.100:8082/'+ market.iconUrl" alt="">
-           <p>{{market.name}}</p>
-         </li>
-       </ul>
-        <grid :show-vertical-dividers="true":show-lr-borders="false">
-          <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
-            <img class="kind-img":src="'http://139.199.115.100:8082/' + more.iconUrl" alt="">
-            <span class="king-name">{{more.name}}</span>
-          </grid-item>
-          <grid-item style="width:23.75%" :show-vertical-dividers="true">
-            <img class="kind-img" src="../../assets/list/more.png">
-            <span class="king-name">更多</span>
-          </grid-item>
-        </grid>
-        <FindBussiness :findDate="findBussinessDate"/>
-        <SaleAchieve :saleDate ="saleAchieveDate"/>
-        <ConsumerCare />
+     <div style="overflow:hidden;">
+      <div style="overflow: scroll;position:absolute;top:0.9rem;bottom:0;">
+        <ul>
+          <li v-for="market in topModelDate" :key="market.id">
+            <img :src="'http://139.199.115.100:8082/'+ market.iconUrl" alt="">
+            <p>{{market.name}}</p>
+          </li>
+        </ul>
+          <grid :show-vertical-dividers="true":show-lr-borders="false">
+            <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
+              <img class="kind-img":src="'http://139.199.115.100:8082/' + more.iconUrl" alt="">
+              <span class="king-name">{{more.name}}</span>
+            </grid-item>
+            <grid-item style="width:23.75%" :show-vertical-dividers="true">
+              <img class="kind-img" src="../../assets/list/more.png">
+              <span class="king-name">更多</span>
+            </grid-item>
+          </grid>
+          <FindBussiness :findDate="findBussinessDate"/>
+          <SaleAchieve :saleDate ="saleAchieveDate"/>
+          <ConsumerCare :careDate ="consumerDate" />
+        </div>
       </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -38,14 +40,16 @@ export default {
     GridItem,
     FindBussiness,
     SaleAchieve,
-    ConsumerCare
+    ConsumerCare,
+
   },
   data(){
     return{
       topModelDate:[],
       andMoreModelDate:[],
       findBussinessDate:[],
-      saleAchieveDate:[]
+      saleAchieveDate:[],
+      consumerDate:[]
     }
   },
   created() {
@@ -66,6 +70,7 @@ export default {
           this.andMoreModelDate =  res.data.data.indexPage.andMoreModelList
           this.findBussinessDate = res.data.data.indexPage.bizSearchModelList
           this.saleAchieveDate = res.data.data.indexPage.saleSearchModelList
+          this.consumerDate = res.data.data.indexPage.customerModelList
         }else if (res.data.code == 'error') {
 
         }

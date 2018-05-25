@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div style="overflow: scroll;position:absolute;top:0;bottom:1rem;">
       <swiper auto class="swiper" height="264.5px" dots-position="center" dots-class="yuanquan">
         <swiper-item v-for="list in adsList" :key="list.id">
           <img class="ban-img" :src="list.imgUrl" alt="">
@@ -43,6 +44,7 @@
             </router-link>
           </div>
       </div>
+    </div>
      <tabbar style='position:fixed'>
         <tabbar-item>
           <img slot="icon" src="../../assets/home/home-1.png">
