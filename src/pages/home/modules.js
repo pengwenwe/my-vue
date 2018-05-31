@@ -1,16 +1,32 @@
 import http from '../../api/base.js'
 export default {
     state: {
-        adsList:[]
+        adsList:[],
+        saleCountMap:{},
+        saoRateMap:{},
+        newDate:[],
+        powerDate:[],
     },
     mutations: {
         setSwiperDate(state,payloade) {
             state.adsList = payloade;
         },
+        setNumberDate(state,payloade) {
+            state.saleCountMap = payloade;
+        },
+        setsaoRateDate(state,payloade) {
+            state.saoRateMap = payloade;
+        },
+        setNewDate(state,payloade) {
+            state.newDate = payloade;
+        },
+        setpowerDate(state,payloade) {
+            state.powerDate = payloade;
+        }
     },
     actions: {
         reqHomeDate(context) {
-            http.post('http://139.199.115.100:8082/indexPageApi/sysNotice',{
+            http.post('/indexPageApi/sysNotice',{
                 "andMoreMode": "1,2,3",
                 "andMoreNum": 7,
                 "systemType": "1",
@@ -18,14 +34,13 @@ export default {
                 "userid": 101
             })
             .then((response) => {
-                console.log(response)
                 if(response.data.code == "success") {
                  context.commit("setSwiperDate",response.data.data.adsList)
-                //   this.saleCountMap = res.data.data.saleData.saleCountMap
-                //   this.saoRateMap = res.data.data.saleData.saoRateMap
-                //   this.newDate = res.data.data.sysNoticeList
-                //   this.powerDate = res.data.data.accessPermitList
-                }else if (res.data.code == 'error') {
+                 context.commit("setNumberDate",response.data.data.saleData.saleCountMap)
+                 context.commit("setsaoRateDate",response.data.data.saleData.saoRateMap)
+                 context.commit("setNewDate",response.data.data.sysNoticeList)
+                 context.commit("setpowerDate",response.data.data.accessPermitList)
+                }else if (response.data.code == 'error') {
         
                 }
               },(error) => {

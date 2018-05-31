@@ -20,11 +20,15 @@
     import http from '../../../api/base.js'
     export default {
         name:'SmallSwiper',
-        props:["newDate"],
         components: {
             Swiper,
             SwiperItem,
             Badge
+        },
+        computed: {
+            newDate() {
+                return this.$store.state.home.newDate
+            },
         }
     }
 </script>

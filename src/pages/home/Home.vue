@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <div style="overflow: scroll;position:absolute;top:0;bottom:1rem;">
-      <SwiperInfo :adsList ="adsList"/>
-      <Number :saleCountMap="saleCountMap" :saoRateMap ="saoRateMap"/>
-      <SmallSwiper :newDate="newDate"/>
-      <PowerModule :powerDate="powerDate"/>
+    <div style="overflow: scroll;position:absolute;top:0;bottom:1rem;width:100%;">
+      <SwiperInfo />
+      <Number />
+      <SmallSwiper />
+      <PowerModule />
       <Footer />
     </div>
   </div>
@@ -31,20 +31,6 @@ export default {
     Tabbar,
     TabbarItem,
     Badge
-  },
-  data(){
-    return{
-      saleCountMap:{},
-      saoRateMap:{},
-      newDate:[],
-      powerDate:[],
-      id:"" 
-    }
-  },
-  computed: {
-    adsList() {
-      return this.$store.state.home.adsList
-    }
   },
   created() {
     this.reqHomeDate()

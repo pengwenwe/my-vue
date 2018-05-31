@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     reqMarketDate(){
-      http.post('http://139.199.115.100:8082/indexPageApi/indexPage',{
+      http.post('/indexPageApi/indexPage',{
         "andMoreMode": "1,2,3",
         "andMoreNum": 7,
         "systemType": "1",

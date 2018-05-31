@@ -19,10 +19,14 @@
 <script>
 export default {
     name:'Number',
-    props:["saleCountMap","saoRateMap"],
-    components: {
-
-    }
+    computed: {
+        saleCountMap() {
+            return this.$store.state.home.saleCountMap
+        },
+        saoRateMap() {
+            return this.$store.state.home.saoRateMap
+        }
+  },
 }
 </script>
 <style scoped lang="stylus">
@@ -47,7 +51,7 @@ export default {
     .num .num-left .more span 
         margin-left 0.24rem
     .num .num-center
-        width 35%
+        width 30%
         height 0.92rem
         border-right 1px solid #ccc
         float left
@@ -57,7 +61,7 @@ export default {
         color #101010
         line-height 0.44rem
     .num .num-right
-        width 35%
+        width 40%
         height 0.92rem
         margin-top 0.54rem
         padding-left 0.2rem

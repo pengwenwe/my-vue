@@ -1,7 +1,7 @@
 <template>
     <div class ="PowerModule">
         <div class="power">
-            <div class="power-num" v-for="list in powerDate" :key="list.id">
+            <div class="power-num" v-for="list in powerDate" :key="list.id" :style='{background:list.bgColor}'>
                 <router-link :to="list.url">
                     <img :src="list.src">
                     <div class="power-num-right">
@@ -17,9 +17,10 @@
 import http from '../../../api/base.js'
 export default {
     name:'PowerModule',
-    props:["powerDate"],
-    components: {
-        
+    computed: {
+        powerDate() {
+            return this.$store.state.home.powerDate
+        },
     }
 }
 </script>
@@ -31,10 +32,7 @@ export default {
   .power .power-num
     width 95%
     height 1.34rem
-    background #e4f2ff
     margin 0.3rem auto 0
-  .power .power-num:nth-child(2)
-    background #f8e8e1
   .power .power-num img 
     width 2.4rem
     heigh 1.34rem

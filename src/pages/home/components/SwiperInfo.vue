@@ -12,10 +12,14 @@ import {Swiper,SwiperItem} from 'vux'
 import http from '../../../api/base.js'
 export default {
     name: 'SwiperInfo',
-    props:["adsList"],
     components: {
         Swiper,
         SwiperItem
+    },
+    computed: {
+        adsList() {
+            return this.$store.state.home.adsList
+        },
     }
 }
 </script>
