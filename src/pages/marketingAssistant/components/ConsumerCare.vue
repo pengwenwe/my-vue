@@ -6,13 +6,13 @@
             <h2>消费者关怀</h2>
             <p>更多 ></p>
         </div>
-        <div class="wrapper" ref="wrapper">
-          <ul class="content" ref="tabWrapper">
-            <li v-for="list in careDate" :key="list.id" ref="tabitem">
-              <img :src="'http://139.199.115.100:8082/'+list.iconUrl" alt="">
-              <span>{{list.name}}</span>
-            </li>
-          </ul>
+        <div class="wrapper" ref="consumerBox">
+            <ul class="content" ref="content">
+              <li v-for="list in careDate" :key="list.id" ref="tabitem">
+                <img :src="'http://139.199.115.100:8082/'+list.iconUrl" alt="">
+                <span>{{list.name}}</span>
+              </li>
+            </ul>
         </div>
      </div>
   </div>
@@ -34,21 +34,26 @@ export default {
         });
     },
   methods:{
-      InitTabScroll(){
-        let width=0
-        for (let  i = 0; i <this.careDate.length; i++) {
-            width+=this.$refs.tabitem[0].getBoundingClientRect().width;
-        }
-        this.$refs.tabWrapper.style.width=width+'px'
-        this.$nextTick(()=>{
-            if (!this.scroll) {
-              this.scroll=new BScroll(this.$refs.wrapper, {
-                click:true
-              });
-            }else{
-              this.scroll.refresh()
-            }
-        });
+     InitTabScroll(){
+        //  let width=0
+        //   for (let i = 0; i <this.careDate.length; i++) {
+        //       width+=this.$refs.tabitem[0].getBoundingClientRect().width
+        //       console.log(width)
+        //   }
+          // this.$refs.content.style.width=width+'px'
+          this.$nextTick(()=>{
+              if (!this.scroll) {
+                  this.scroll=new BScroll(this.$refs.consumerBox, {
+                      startX:0,
+                      click:true,
+                      scrollX:true,
+                      scrollY:false,
+                      eventPassthrough:'vertical'
+                  })
+              }else{
+                  this.scroll.refresh()
+              }
+          })
       }
     }
 }
@@ -83,21 +88,25 @@ export default {
     top 0.37rem
     font-size 0.24rem
   .wrapper
-    width 100%
+    width 7.5rem
     height 1.12rem
     position absolute
     overflow hidden
-  .content li
+  .wrapper .content 
+    min-width 10rem
+    height 1.12rem
+  .wrapper .content li
     width 1.69rem
     height 1.12rem
     border-right 1px solid #ccc
     text-align center
     float left
-  .content li img 
+  .wrapper .content li img 
      width .5rem
      height 0.55rem
      margin 0.1rem auto
-   .content li img 
+     display block 
+  .wrapper .content li span 
      display block 
      color #000
 </style>
