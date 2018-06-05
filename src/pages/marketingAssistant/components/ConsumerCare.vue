@@ -1,62 +1,73 @@
 <template>
   <div class="consumerCare">
-     <div class="consumer">
-        <div class="consumer-tit">
-            <img src="../../../assets/list/top.png" style="width:3.27rem;height:0.06rem;"alt="">
-            <h2>消费者关怀</h2>
-            <p>更多 ></p>
+    <div class="consumer">
+      <div class="consumer-tit">
+        <img src="../../../assets/list/top.png" style="width:3.27rem;height:0.06rem;" alt="">
+        <h2>消费者关怀</h2>
+        <p>更多 ></p>
+      </div>
+      <div class="wrapper" ref="consumerBox">
+        <div class="content" ref="content">
+          <ul style="width:100%;height:100%;" ref="tabitem">
+            <li v-for="list in consumerDate" :key="list.id" ref='liSize'>
+              <img :src="baseURL+list.iconUrl" alt="">
+              <span>{{list.name}}</span>
+            </li>
+          </ul>
         </div>
-        <div class="wrapper" ref="consumerBox">
-            <ul class="content" ref="content">
-              <li v-for="list in careDate" :key="list.id" ref="tabitem">
-                <img :src="'http://139.199.115.100:8082/'+list.iconUrl" alt="">
-                <span>{{list.name}}</span>
-              </li>
-            </ul>
-        </div>
-     </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import {Swiper,SwiperItem} from 'vux'
-import BScroll from 'better-scroll'
-export default {
-  name: 'consumerCare',
-  components: {
-   Swiper,
-   SwiperItem
-  },
-  props:['careDate'],
-  created() {
-     this.$nextTick(() => {
-          this.InitTabScroll();
-        });
+  const liWidth = 90
+  import {
+    Swiper,
+    SwiperItem
+  } from 'vux'
+  import BScroll from 'better-scroll'
+  import {baseURL} from '../../../api/url.js'
+  import {
+    setTimeout
+  } from 'timers';
+  export default {
+    name: 'consumerCare',
+    components: {
+      Swiper,
+      SwiperItem
     },
-  methods:{
-     InitTabScroll(){
-        //  let width=0
-        //   for (let i = 0; i <this.careDate.length; i++) {
-        //       width+=this.$refs.tabitem[0].getBoundingClientRect().width
-        //       console.log(width)
-        //   }
-          // this.$refs.content.style.width=width+'px'
-          this.$nextTick(()=>{
-              if (!this.scroll) {
-                  this.scroll=new BScroll(this.$refs.consumerBox, {
-                      startX:0,
-                      click:true,
-                      scrollX:true,
-                      scrollY:false,
-                      eventPassthrough:'vertical'
-                  })
-              }else{
-                  this.scroll.refresh()
-              }
-          })
+    data() {
+      return {
+        baseURL:baseURL
       }
+    },
+    computed: {
+      consumerDate() {
+        return this.$store.state.market.consumerDate
+      }
+    },
+    mounted() {
+      setTimeout(() => {
+        if (this.$refs.consumerBox) {
+          this.scroll = new BScroll(this.$refs.consumerBox, {
+            startX: 0,
+            click: true,
+            scrollX: true,
+            scrollY: false,
+            eventPassthrough: 'vertical'
+          })
+        }
+        let width = 0
+        let length = this.consumerDate.length
+        if (this.$refs.tabitem) {
+          let ulWidth = this.$refs.tabitem.clientWidth
+          this.$refs.content.style.width = (ulWidth+55) + 'px'
+          
+        }
+      }, 20)
     }
-}
+  }
 </script>
 
 <style scoped lang="stylus">
@@ -88,12 +99,14 @@ export default {
     top 0.37rem
     font-size 0.24rem
   .wrapper
+    touch-action none
+    // position fixed
+    bottom 0
     width 7.5rem
     height 1.12rem
     position absolute
     overflow hidden
   .wrapper .content 
-    min-width 10rem
     height 1.12rem
   .wrapper .content li
     width 1.69rem

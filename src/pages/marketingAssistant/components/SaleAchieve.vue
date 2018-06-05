@@ -6,28 +6,28 @@
            <h2>销售达成查询</h2>
       </div>
       <ul>
-          <li v-for="list in saleDate" :key="list.id">
+          <li v-for="list in saleAchieveDate" :key="list.id">
             <span>{{list.name}}</span>
-            <img :src="'http://139.199.115.100:8082/'+ list.iconUrl" alt="">
+            <img :src="baseURL+ list.iconUrl" alt="">
           </li>
        </ul>
     </div>
   </div>
 </template>
-
 <script>
-
+import {baseURL} from '../../../api/url.js'
 export default {
   name: 'saleAchieve',
-  components: {
-   
-  },
   data(){
     return{
-     
+     baseURL:baseURL
     }
   },
-  props:['saleDate']
+  computed: {
+    saleAchieveDate() {
+      return this.$store.state.market.saleAchieveDate
+    }
+  }
 }
 </script>
 

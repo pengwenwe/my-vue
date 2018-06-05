@@ -7,9 +7,9 @@
           <img src="../../../assets/list/bus.png" alt="">
        </div>
        <ul class="sale-query">
-         <li v-for="(busDate,index) in findDate" :key="busDate.id" v-if="index<2">
+         <li v-for="(busDate,index) in findBussinessDate" :key="busDate.id" v-if="index<2">
            <h2>{{busDate.name}}</h2>
-           <img :src="'http://139.199.115.100:8082/'+ busDate.iconUrl" alt="">
+            <img :src="baseURL+busDate.iconUrl" alt="">
          </li>
        </ul>
        <div class="bottom-query">
@@ -25,24 +25,22 @@
      </div>
   </div>
 </template>
-
 <script>
-  import http from '../../../api/base.js'
+  import {baseURL} from '../../../api/url.js'
     export default {
       name: 'FindBussiness',
-      components: {
-       
-      },
-      props:['findDate'],
-      data(){
-        return{
-          
+      data() {
+        return {
+          baseURL
         }
       },
-     
+      computed: {
+        findBussinessDate() {
+          return this.$store.state.market.findBussinessDate
+        }
+      }
     }
 </script>
-
 <style scoped lang="stylus">
   .find-con
     width 100%

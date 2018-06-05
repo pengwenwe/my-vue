@@ -40,7 +40,7 @@ export default {
     width 62%
     float right
     margin-top 0.18rem
-    padding-right 0.18rem
+    margin-left 0.1rem
 </style>
 
 

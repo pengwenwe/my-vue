@@ -8,12 +8,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '../api/base.js'
 import home from '../pages/home/modules.js'
+import market from '../pages/marketingAssistant/modules.js'
 import  { LoadingPlugin } from 'vux'
 Vue.use(LoadingPlugin)
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	modules: {
-		home: home
+		home: home,
+		market: market
 	}
 })

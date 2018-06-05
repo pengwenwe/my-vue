@@ -1,128 +1,51 @@
 <template>
   <div class="marketingAssistant">
-     <x-header :left-options="{backText: ''}">营销小助手</x-header>
+     <x-header :left-options="{backText: ''}" class="top">赢销小助手</x-header>
      <div style="overflow:hidden;">
       <div style="overflow: scroll;position:absolute;top:0.9rem;bottom:0;">
-        <ul>
-          <li v-for="market in topModelDate" :key="market.id">
-            <img :src="'http://139.199.115.100:8082/'+ market.iconUrl" alt="">
-            <p>{{market.name}}</p>
-          </li>
-        </ul>
-          <grid :show-vertical-dividers="true":show-lr-borders="false">
-            <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
-              <img class="kind-img":src="'http://139.199.115.100:8082/' + more.iconUrl" alt="">
-              <span class="king-name">{{more.name}}</span>
-            </grid-item>
-            <grid-item style="width:23.75%" :show-vertical-dividers="true">
-              <img class="kind-img" src="../../assets/list/more.png">
-              <span class="king-name">更多</span>
-            </grid-item>
-          </grid>
-          <FindBussiness :findDate="findBussinessDate"/>
-          <SaleAchieve :saleDate ="saleAchieveDate"/>
-          <ConsumerCare :careDate ="consumerDate" />
+          <MarketTop />
+          <MoreNumber />
+          <FindBussiness />
+          <SaleAchieve />
+          <ConsumerCare />
         </div>
       </div>
     </div>
 </template>
 
 <script>
-import {Grid, GridItem} from 'vux'
 import http from '../../api/base.js'
+import MarketTop from './components/MarketTop'
+import MoreNumber from './components/MoreNumber'
 import FindBussiness from './components/FindBussiness'
 import SaleAchieve from './components/SaleAchieve'
 import ConsumerCare from './components/ConsumerCare'
+import {baseURL} from '../../api/url.js'
 export default {
   name: 'MarketingAssistant',
   components: {
-    Grid,
-    GridItem,
+    MarketTop,
+    MoreNumber,
     FindBussiness,
     SaleAchieve,
     ConsumerCare,
-
   },
   data(){
     return{
-      topModelDate:[],
-      andMoreModelDate:[],
-      findBussinessDate:[],
-      saleAchieveDate:[],
-      consumerDate:[]
     }
   },
   created() {
     this.reqMarketDate()
   },
   methods: {
-    reqMarketDate(){
-      http.post('/indexPageApi/indexPage',{
-        "andMoreMode": "1,2,3",
-        "andMoreNum": 7,
-        "systemType": "1",
-        "userLoginName": "101",
-        "userid": 101
-      })
-      .then((res) => {
-        if(res.data.code == "success") {
-          this.topModelDate = res.data.data.indexPage.topModelList
-          this.andMoreModelDate =  res.data.data.indexPage.andMoreModelList
-          this.findBussinessDate = res.data.data.indexPage.bizSearchModelList
-          this.saleAchieveDate = res.data.data.indexPage.saleSearchModelList
-          this.consumerDate = res.data.data.indexPage.customerModelList
-        }else if (res.data.code == 'error') {
-
-        }
-      },(error) => {
-
-      })
+    reqMarketDate() {
+      this.$store.dispatch("reqMarketDate");
     }
   }
 }
 </script>
 
 <style scoped lang="stylus">
-  ul
-    height 2.11rem
-    background #fff
-    border-top 1px solid #ccc
-    display flex
-  ul li 
-    flex-direction column
-    width 1.6rem
-    height 1.6rem
-    background #599ce2
-    text-align center
-    margin-top 0.3rem 
-    border-radius 0.1rem
-    box-shadow 0 0 10px #e5e4e4
-    justify-content center
-    margin-left 0.2rem
-  ul li:nth-child(2)
-    background #efb053
-  ul li:nth-child(3)
-    background #93cd67
-  ul li:nth-child(4)
-    background #66bee6
-  ul li img
-    width 0.58rem
-    height 0.58rem
-    margin-top 0.28rem
-  ul li p
-    color #fff
-    font-size 14px
-  .weui-grid
-    text-align center
-    padding 10px 7px !important
-  .kind-img
-    width 0.6rem
-    height 0.6rem
-    display block
-    margin auto
-  .king-name
-    margin-top 0.2rem
-    display block
-  .weui-grid:nth-child(7)
-    border-right 1px solid #e1e1e1
+  .top 
+    border-bottom 1px solid red !important
 </style>

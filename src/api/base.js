@@ -12,6 +12,7 @@ Vue.use(ToastPlugin)
 axios.defaults.timeout = 60000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'; //配置请求头
 axios.defaults.baseURL = 'http://139.199.115.100:8082'; //配置接口地址
+
 //POST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((config) => {
   // 显示
