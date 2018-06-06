@@ -47,5 +47,5 @@ export default {
 
 <style scoped lang="stylus">
   .top 
-    border-bottom 1px solid red !important
+    border-bottom 1px solid #ccc !important
 </style>

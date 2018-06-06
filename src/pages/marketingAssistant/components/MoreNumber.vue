@@ -1,16 +1,14 @@
 <template>
     <div class="moreNumber">
-         <grid :show-vertical-dividers="true" :show-lr-borders="false">
-            <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" style="width:23.75%" v-if="i<7">
-              <img class="kind-img" :src="baseURL+more.iconUrl" alt="">
-              <span class="king-name">{{more.name}}</span>
+         <grid :cols="4" :show-vertical-dividers="true" :show-lr-borders="false">
+            <grid-item v-for="(more,i) in andMoreModelDate" :key="more.id" v-if="i<7">
+              <img slot="icon" class="kind-img" :src="baseURL+more.iconUrl" alt="">
+              <span slot="label" class="king-name">{{more.name}}</span>
             </grid-item>
-            <router-link to="../../MoreList">
-                <grid-item style="width:23.75%" :show-vertical-dividers="true">
-                <img class="kind-img" src="../../../assets/list/more.png">
-                <span class="king-name">更多</span>
-                </grid-item>
-            </router-link>
+            <grid-item style="width:25%" @click='andmore' link="../MoreList">
+                <img  slot="icon" class="kind-img" src="../../../assets/list/more.png">
+                <span slot="label" class="king-name">更多</span>
+            </grid-item>
           </grid>
     </div>
 </template>
@@ -25,12 +23,18 @@ export default {
     },
     data() {
         return {
-          baseURL
+          baseURL:baseURL
         }
     },
     computed: {
         andMoreModelDate() {
             return this.$store.state.market.andMoreModelDate
+        }
+    },
+    methods:{
+        andmore(e) {
+            console.log(e)
+            // this.$router.push({path:'../../MoreList'})
         }
     }
 }
@@ -47,8 +51,10 @@ export default {
   .king-name
         margin-top 0.2rem
         display block
+  .weui-grid:nth-child(3)
+        border-right 1px solid #D9D9D9     
   .weui-grid:nth-child(7)
-        border-right 1px solid #e1e1e1
+        border-right 1px solid #D9D9D9  
 </style>
 
 

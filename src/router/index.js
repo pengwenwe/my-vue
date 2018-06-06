@@ -4,6 +4,7 @@ import Home from '../pages/home/Home'
 import TrainingManagement from '../pages/trainingManagement/TrainingManagement'
 import MarketingAssistant from '../pages/marketingAssistant/MarketingAssistant'
 import MoreList from '../pages/moreList/MoreList'
+import MoreMethods from '../pages/moreMethods/MoreMethods'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/MoreList',
       name: 'MoreList',
       component: MoreList
+    },
+    {
+      path: '/MoreMethods',
+      name: 'MoreMethods',
+      component: MoreMethods
     }
   ]
 })

@@ -33,6 +33,9 @@ export default {
     background-color #0042ac !important
   .vux-header
     background-color #fff !important
+    padding 2px 0 !important
+   .vux-header .vux-header-right a
+        color #0147a3 !important
   .vux-header-title
     color #000 !important
     font-size 0.45rem !important
@@ -42,7 +45,6 @@ export default {
   .weui-grids 
     background #fff
     height 3.18rem
-    padding-left 2.5%
   .weui-grids:before
     border-top 0 !important
   .weui-grid:before:nth-child(4)

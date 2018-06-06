@@ -22,8 +22,8 @@ export default {
               "andMoreMode": "1,2,3",
               "andMoreNum": 7,
               "systemType": "1",
-              "userLoginName": "101",
-              "userid": 101
+              "userLoginName": "104",
+              "userid": 104
             })
             .then((res) => {
               if(res.data.code == "success") {
