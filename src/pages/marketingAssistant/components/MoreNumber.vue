@@ -5,7 +5,7 @@
               <img slot="icon" class="kind-img" :src="baseURL+more.iconUrl" alt="">
               <span slot="label" class="king-name">{{more.name}}</span>
             </grid-item>
-            <grid-item style="width:25%" @click='andmore' link="../MoreList">
+            <grid-item style="width:25%" link="../MoreList">
                 <img  slot="icon" class="kind-img" src="../../../assets/list/more.png">
                 <span slot="label" class="king-name">更多</span>
             </grid-item>
@@ -29,12 +29,6 @@ export default {
     computed: {
         andMoreModelDate() {
             return this.$store.state.market.andMoreModelDate
-        }
-    },
-    methods:{
-        andmore(e) {
-            console.log(e)
-            // this.$router.push({path:'../../MoreList'})
         }
     }
 }

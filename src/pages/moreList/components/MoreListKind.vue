@@ -5,7 +5,7 @@
                 <img slot="icon" class="kind-img" :src="baseURL+more.iconUrl">
                 <span slot="label" class="king-name">{{more.name}}</span>
             </grid-item>
-            <grid-item link="../MoreMethods" style="width:23.75%;height:15%;border:1px dashed #000;margin-top: 18px;margin-left: 4px;">
+            <grid-item link="../MoreMethods" style="width:25%;height:15%;border:1px dashed #000;margin-top: 18px;margin-left: 4px;">
                 <span slot="label" class="king-name edit">编辑</span>
             </grid-item>
          </grid>

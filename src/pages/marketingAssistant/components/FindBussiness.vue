@@ -7,7 +7,7 @@
           <img src="../../../assets/list/bus.png" alt="">
        </div>
        <ul class="sale-query">
-         <li v-for="(busDate,index) in findBussinessDate" :key="busDate.id" v-if="index<2">
+         <li v-for="busDate in findBussinessDate" :key="busDate.id">
            <h2>{{busDate.name}}</h2>
             <img :src="baseURL+busDate.iconUrl" alt="">
          </li>
@@ -36,7 +36,7 @@
       },
       computed: {
         findBussinessDate() {
-          return this.$store.state.market.findBussinessDate
+          return this.$store.state.market.findBussinessDate.splice(1,2)
         }
       }
     }
