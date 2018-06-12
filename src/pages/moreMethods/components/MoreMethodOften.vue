@@ -3,8 +3,8 @@
         <div class="often">
             <h2 class="often_tit">常用功能</h2>
             <grid :show-lr-borders="false" :show-vertical-dividers="false" class="nine" > 
-                <grid-item  v-for="(more,index) in addMoreModelDate" :key="more.id" v-if="index<7" style="width:22.75%;">
-                    <x-icon type="ios-minus" size="18" class="reduce_icon" @click="handleClickDelete()"></x-icon>
+                <grid-item  v-for="(more,index) in userMoreModelDate" :key="more.id" style="width:22.75%;">
+                    <x-icon type="ios-minus" size="18" class="reduce_icon" @click="handleClickDelete(index,more)"></x-icon>
                     <img slot="icon" class="kind-img" :src="baseURL+more.iconUrl">
                     <span slot="label" class="king-name">{{more.name}}</span>
                 </grid-item>
@@ -13,10 +13,10 @@
         <div class="un_often">
             <h2 class="un_often_tit">不常用功能</h2>
             <grid :show-lr-borders="false" :show-vertical-dividers="false" class="nine" > 
-                <grid-item  v-for="more in deleteMoreModelDate" :key="more.id" style="width:22.75%;">
-                    <x-icon type="ios-plus" size="18"  class="reduce_icon"></x-icon>
-                    <img slot="icon" class="kind-img" :src="baseURL+more.iconUrl">
-                    <span slot="label" class="king-name">{{more.name}}</span>
+                <grid-item  v-for="(Item,index) in UnUserMoreModelDate" :key="Item.id" style="width:22.75%;">
+                    <x-icon type="ios-plus" size="18"  class="reduce_icon" @click="handleClickAdd(Item,index)"></x-icon>
+                    <img slot="icon" class="kind-img" :src="baseURL+Item.iconUrl">
+                    <span slot="label" class="king-name">{{Item.name}}</span>
                 </grid-item>
             </grid>
         </div>
@@ -38,19 +38,30 @@ export default {
         }
     },
     computed: {
-        addMoreModelDate() {
-            return this.$store.state.market.andMoreModelDate
+        userMoreModelDate() {
+            return this.$store.state.market.userMoreModelDate
         },
-        deleteMoreModelDate() {
-            return this.$store.state.market.andMoreModelDate.slice(7)
+        UnUserMoreModelDate() {
+            return this.$store.state.market.UnUserMoreModelDate
         }
     },
     methods: {
-        handleClickDelete: function(index){
-          let deletItem = this.addMoreModelDate.splice(index, 1);
-          console.log(deletItem)
-        //   this.deleteMoreModelDate.push([deletItem])
-        }
+        handleClickDelete: function(index,more){
+            if(this.userMoreModelDate.length > 1) {
+                this.userMoreModelDate.splice(index,1)
+                this.UnUserMoreModelDate.push(more)
+            }else{
+                return false;
+            }
+        },
+        handleClickAdd:function(index,Item) {
+           if(this.userMoreModelDate.length < 7) {
+               this.UnUserMoreModelDate.splice(Item,1)
+               this.userMoreModelDate.push(index)
+           }else {
+               return false;
+           }
+        },
     }
 }
 </script>
@@ -73,7 +84,7 @@ export default {
             margin-left 0.1rem
             margin-bottom 0.2rem
         .nine 
-            height 3.73rem 
+            min-height 3.73rem!important 
             margin-left 0.1rem
         .weui-grid:after
             border-bottom 0!important
@@ -110,7 +121,7 @@ export default {
             margin-left 0.1rem
             margin-bottom 0.2rem
         .nine 
-            height 3.73rem 
+            min-height 5.73rem 
             margin-left 0.1rem
         .weui-grid:after
             border-bottom 0!important
@@ -129,5 +140,7 @@ export default {
             position absolute
             top 7px
             right 8px
+    .weui-grids 
+        height: 0!important
 </style>
 </style>

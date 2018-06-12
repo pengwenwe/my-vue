@@ -6,6 +6,8 @@ export default {
         findBussinessDate:[],
         saleAchieveDate:[],
         consumerDate:[],
+        userMoreModelDate:[],
+        UnUserMoreModelDate:[],
     },
     mutations: {
         setDate(state,payloade) {
@@ -15,6 +17,10 @@ export default {
             state.saleAchieveDate = payloade.saleSearchModelList;
             state.consumerDate = payloade.customerModelList;
         },
+        addMoreModelDate(state,payloade) {
+            state.userMoreModelDate = payloade.userMoreModelDate;
+            state.UnUserMoreModelDate = payloade.UnUserMoreModelDate;
+        }
     },
     actions: {
         reqMarketDate(context){
@@ -27,7 +33,22 @@ export default {
             })
             .then((res) => {
               if(res.data.code == "success") {
-                context.commit("setDate",res.data.data.indexPage)
+                context.commit("setDate",res.data.data.indexPage);
+                let splitDate = res.data.data.indexPage.andMoreModelList;
+                let seven = res.data.data.indexPage.andMoreNum;
+                let userMoreModelDate = [];
+                let UnUserMoreModelDate = [];
+                splitDate.forEach((value,index) => {
+                   if(index < seven) {
+                    userMoreModelDate.push(value)  
+                   }else{
+                    UnUserMoreModelDate.push(value)
+                   }
+                })
+                context.commit("addMoreModelDate",{
+                    userMoreModelDate:userMoreModelDate,
+                    UnUserMoreModelDate:UnUserMoreModelDate,
+                })
               }else if (res.data.code == 'error') {
       
               }
