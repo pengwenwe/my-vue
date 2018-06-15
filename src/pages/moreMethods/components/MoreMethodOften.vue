@@ -12,7 +12,7 @@
         </div>
         <div class="un_often">
             <h2 class="un_often_tit">不常用功能</h2>
-            <grid :show-lr-borders="false" :show-vertical-dividers="false" class="nine" > 
+            <grid :show-lr-borders="false" :show-vertical-dividers="false" class="nine"> 
                 <grid-item  v-for="(Item,index) in UnUserMoreModelDate" :key="Item.id" style="width:22.75%;">
                     <x-icon type="ios-plus" size="18"  class="reduce_icon" @click="handleClickAdd(Item,index)"></x-icon>
                     <img slot="icon" class="kind-img" :src="baseURL+Item.iconUrl">

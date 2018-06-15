@@ -15,15 +15,16 @@ export default {
     methods: {
         handleClickfinish: function() {
             let userDate = this.$store.state.market.userMoreModelDate.length
-            http.post('/indexPageApi/updateAndMore',{
-               "andMoreMode": "1,2,3",
-                "andMoreNum": userDate,
-            })
-            .then((res) => {
-                // 成功回调
-            },(error) => {
-                // 失败回调
-            });
+            console.log(index)
+            // http.post('/indexPageApi/updateAndMore',{
+            //    "andMoreMode": "1,2,3",
+            //     "andMoreNum": userDate,
+            // })
+            // .then((res) => {
+            //     // 成功回调
+            // },(error) => {
+            //     // 失败回调
+            // });
         }
     }
 }

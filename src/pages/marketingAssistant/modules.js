@@ -8,6 +8,7 @@ export default {
         consumerDate:[],
         userMoreModelDate:[],
         UnUserMoreModelDate:[],
+        userMoreModeId:[],
     },
     mutations: {
         setDate(state,payloade) {
@@ -38,13 +39,15 @@ export default {
                 let seven = res.data.data.indexPage.andMoreNum;
                 let userMoreModelDate = [];
                 let UnUserMoreModelDate = [];
+                let userMoreModeId = [];
                 splitDate.forEach((value,index) => {
                    if(index < seven) {
-                    userMoreModelDate.push(value)  
+                    userMoreModelDate.push(value) 
                    }else{
                     UnUserMoreModelDate.push(value)
                    }
                 })
+              
                 context.commit("addMoreModelDate",{
                     userMoreModelDate:userMoreModelDate,
                     UnUserMoreModelDate:UnUserMoreModelDate,
