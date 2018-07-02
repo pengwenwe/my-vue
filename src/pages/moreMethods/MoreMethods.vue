@@ -1,6 +1,6 @@
 <template>
     <div class="moreMethods">
-        <x-header :left-options="{backText: ''}" class="top">更多<a slot="right" @click="handleClickfinish()" >完成</a></x-header>
+        <x-header :left-options="{backText: ''}" class="top">更多<a slot="right" @click="handleClickfinish(value,index)" >完成</a></x-header>
         <MoreMethodOften />
     </div>
 </template>
@@ -13,9 +13,9 @@ export default {
         MoreMethodOften
     },
     methods: {
-        handleClickfinish: function() {
+        handleClickfinish: function(value,index) {
             let userDate = this.$store.state.market.userMoreModelDate.length
-            console.log(index)
+            console.log(value,index)
             // http.post('/indexPageApi/updateAndMore',{
             //    "andMoreMode": "1,2,3",
             //     "andMoreNum": userDate,
